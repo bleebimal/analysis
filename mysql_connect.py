@@ -13,7 +13,7 @@ def connect():
 
 
         if conn.is_connected():
-            print('connection established.')
+            print('connection established.')  # Connection
         else:
             print('connection failed.')
 
