@@ -6,7 +6,7 @@ import pandas as pd
 from collections import Counter
 from mysql_dbconfig import read_db_config
 
-file = pd.read_csv('/home/blee/Downloads/output.csv')
+file = pd.read_csv('/home/blee/Downloads/input.csv')
 dbconfig = read_db_config()
 con = MySQLConnection(**dbconfig)
 cur = con.cursor()
@@ -56,11 +56,11 @@ def ipc_read():
         # new = upc_data['upc'].isin(upc_check)
         # print(upc_data.loc[upc_data['upc'].isin(upc_check)])
 
-        new = ipc_data.query("ipc in @seed_ipc.Code")  # filtering database equal to seed set
+        new = ipc_data.query("ipc in @seed_ipc.Code")  # filtering database equal to seed set to reduce calculation
 
 
         print('Total Row(s):', cursor.rowcount)
-        ipc_precision = {}   # precision calculate for upc
+        ipc_precision = {}   # precision calculation for ipc
 
         for sindex, srow in seed_ipc.iterrows():
             for dindex, drow in new.iterrows():
@@ -184,7 +184,7 @@ def cpc_read():
 
 
         print('Total Row(s):', cursor.rowcount)
-        cpc_precision = {}   # precision calculate for upc
+        cpc_precision = {}   # precision calculate for cpc
 
         for sindex, srow in seed_cpc.iterrows():
             for dindex, drow in new.iterrows():
