@@ -1,6 +1,6 @@
 
 from configparser import ConfigParser
-# db config
+# dbconfig
 
 def read_db_config(filename='config.ini', section='mysql'):
     """ Read database configuration file and return a dictionary object
